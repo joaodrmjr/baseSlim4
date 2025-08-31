@@ -50,5 +50,8 @@ return function (ContainerInterface $container) {
 	$container->set("AuthController", function ($container) {
 		return new \App\Controllers\AuthController($container);
 	});
+	$container->set("UserController", function ($container) {
+		return new \App\Controllers\UserController($container);
+	});
 
 };

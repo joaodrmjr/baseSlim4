@@ -1,0 +1,15 @@
+{% extends 'templates/web.twig' %}
+
+
+{% block content %}
+
+<form method="post" action="{{ url_for('user.changepw') }}">
+
+	<div class="mb-3">
+		<input type="password" name="password" class="form-control" value="{{ old.password }}" placeholder="Nova senha">
+	</div>
+	<button type="submit" class="btn btn-primary">Alterar</button>
+
+</form>
+
+{% endblock %}

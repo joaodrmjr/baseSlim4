@@ -16,6 +16,15 @@ return function (App $app) {
 	$app->get("/login", "AuthController:login")->setName("auth.login");
 	$app->post("/login", "AuthController:postLogin");
 	$app->get("/logout", "AuthController:logout")->setName("auth.logout");
+
+
+	$app->group("/user", function (RouteCollectorProxy $group) use ($app) {
+
+
+		$group->get("/changepw", "UserController:changePassword")->setName("user.changepw");
+		$group->post("/changepw", "UserController:postChangePassword");
+
+	})->add(new \App\Middleware\AuthMiddleware($app->getContainer()));
 	
 	
 };

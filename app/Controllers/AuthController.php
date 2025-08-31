@@ -14,6 +14,7 @@ class AuthController extends Controller {
 
 	public function login($request, $response)
 	{
+		echo password_hash("123456789", PASSWORD_DEFAULT);
 		if (Auth::check()) {
 			return redirect($request, $response, "home");
 		}
