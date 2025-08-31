@@ -2,6 +2,8 @@
 
 use Slim\App;
 
+use Slim\Views\TwigMiddleware;
+
 return function (App $app) {
 
 	$settings = $app->getContainer()->get("settings");
@@ -9,5 +11,8 @@ return function (App $app) {
 	$app->addRoutingMiddleware();
 
 	$app->addErrorMiddleware($settings['displayErrorDetails'], $settings['logErrors'], $settings['logErrorDetails']);
+
+
+	$app->add(TwigMiddleware::create($app, $app->getContainer()->get("view")));
 
 };
