@@ -17,6 +17,11 @@ class WebController extends Controller {
 		return $this->view->render($response, "home.twig");
 	}
 
+	public function teste($request, $response)
+	{
+		return redirect($request, $response, "home");
+	}
+
 
 	public function flash($request, $response)
 	{

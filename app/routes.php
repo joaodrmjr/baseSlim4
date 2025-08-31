@@ -11,6 +11,7 @@ return function (App $app) {
 
 
 	$app->get("/", "WebController:home")->setName("home");
+	$app->post("/teste", "WebController:teste")->setName("teste");
 
 	$app->get("/flash", "WebController:flash");
 	
