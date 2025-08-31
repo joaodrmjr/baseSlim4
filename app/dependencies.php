@@ -6,6 +6,8 @@ use Slim\Views\Twig;
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
+use App\Auth\Auth;
+
 return function (ContainerInterface $container) {
 
 	// banco de dados
@@ -31,7 +33,12 @@ return function (ContainerInterface $container) {
 		$settings = $container->get("settings");
 		$twig = Twig::create($settings["view"]["template_path"], $settings["view"]["twig"]);
 
-		$twig->getEnvironment()->addGlobal("flash", $container->get("flash")->getMessages());		
+		$twig->getEnvironment()->addGlobal("flash", $container->get("flash")->getMessages());
+
+		$twig->getEnvironment()->addGlobal("auth", [
+			"logged" => Auth::check(),
+			"user" => Auth::user()
+		]);
 
 		return $twig;
 	});
@@ -39,6 +46,9 @@ return function (ContainerInterface $container) {
 	// controllers
 	$container->set("WebController", function ($container) {
 		return new \App\Controllers\WebController($container);
+	});
+	$container->set("AuthController", function ($container) {
+		return new \App\Controllers\AuthController($container);
 	});
 
 };
