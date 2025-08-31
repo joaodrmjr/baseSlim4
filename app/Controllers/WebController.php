@@ -11,8 +11,7 @@ class WebController extends Controller {
 
 	public function home($request, $response)
 	{
-		$response->getBody()->write("Olá mundo!");
-		return $response;
+		return $this->view->render($response, "home.twig");
 	}
 
 }
