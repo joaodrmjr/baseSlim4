@@ -15,4 +15,6 @@ return function (App $app) {
 
 	$app->add(TwigMiddleware::create($app, $app->getContainer()->get("view")));
 
+	$app->add(new \App\Middleware\ValidationErrorsMiddleware($app->getContainer()));
+
 };

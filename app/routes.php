@@ -11,6 +11,8 @@ return function (App $app) {
 
 
 	$app->get("/", "WebController:home")->setName("home");
+
+	$app->get("/flash", "WebController:flash");
 	
 	
 };

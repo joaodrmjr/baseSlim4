@@ -17,4 +17,11 @@ class WebController extends Controller {
 		return $this->view->render($response, "home.twig");
 	}
 
+
+	public function flash($request, $response)
+	{
+		$this->flash->addMessage("info", "Testando flash messages");
+		return redirect($request, $response, "home");
+	}
+
 }

@@ -18,12 +18,20 @@ return function (ContainerInterface $container) {
 		return $capsule;
 	});
 
+	$container->set("flash", function () {
+		return new \Slim\Flash\Messages();
+	});
+
+	$container->set("validation", function () {
+		return new \App\Validation\Validator();
+	});
 
 	// twig view
 	$container->set("view", function ($container) {
 		$settings = $container->get("settings");
 		$twig = Twig::create($settings["view"]["template_path"], $settings["view"]["twig"]);
 
+		$twig->getEnvironment()->addGlobal("flash", $container->get("flash")->getMessages());		
 
 		return $twig;
 	});

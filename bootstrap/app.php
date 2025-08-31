@@ -1,5 +1,8 @@
 <?php
 
+// inicia a sessao
+session_start();
+
 
 use \DI\Container;
 use Slim\Factory\AppFactory;
